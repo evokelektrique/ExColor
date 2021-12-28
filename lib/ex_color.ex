@@ -1,5 +1,5 @@
 defmodule ExColor do
-  defstruct [:length, :width, :height]
+  defstruct [:width, :height, :chunks]
 
   def parse_png(binary) do
     <<
@@ -13,13 +13,16 @@ defmodule ExColor do
       10,
       26,
       10,
-      length::unsigned-32,
-      "IHDR",
+      _length::unsigned-32,
+      ?I,
+      ?H,
+      ?D,
+      ?R,
       width::unsigned-32,
       height::unsigned-32,
-      _chunk::binary
+      chunks::binary
     >> = binary
 
-    %ExColor{length: length, width: width, height: height}
+    %ExColor{width: width, height: height, chunks: chunks}
   end
 end
