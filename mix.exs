@@ -3,7 +3,7 @@ defmodule ExColor.MixProject do
 
   def project do
     [
-      app: :excolor,
+      app: :ex_color,
       version: "0.1.0",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
