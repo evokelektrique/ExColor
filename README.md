@@ -3,9 +3,12 @@
 Extract colors from **PNG** or **JPEG** images.
 
 ## Usage
+
 ```elixir
-# Get two top colors from the image
-ExColor.get_most_used_colors("./test/samples/flower.png", 2) # ["#132A00", "#FFFFFF"]
+# Extract two most used colors from an image
+path = "./test/samples/flower.png"
+ExColor.get_most_used_colors(path, 2) 
+# => ["#132A00", "#FFFFFF"]
 ```
 
 ## TODO
