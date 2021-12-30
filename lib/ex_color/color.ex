@@ -3,22 +3,26 @@ defmodule ExColor.Color do
 
   alias __MODULE__
 
+  @spec get_color(binary()) :: any()
   def get_color(<<r, g, b, a>> = color) do
     %Color{
-      rgb: %{red: r, green: g, blue: b, alpha: a},
+      rgb: [r, g, b, a],
       hex: to_hex(color)
     }
   end
 
+  @spec get_color(binary()) :: any()
   def get_color(<<r, g, b>> = color) do
     %Color{
-      rgb: [red: r, green: g, blue: b],
+      rgb: [r, g, b],
       hex: to_hex(color)
     }
   end
 
+  @spec to_hex(binary()) :: String.t()
   def to_hex(<<r, g, b, _a>>), do: to_hex(<<r, g, b>>)
 
+  @spec to_hex(binary()) :: String.t()
   def to_hex(<<r, g, b>>) do
     hex =
       [r, g, b]
