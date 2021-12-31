@@ -11,11 +11,13 @@ defmodule ExColor do
   def get_most_used_colors(path, quantity \\ 5) do
     {:ok, pixels} = Pixels.read_file(path)
 
+    # delta = trunc(100 / quantity)
+
     colors =
       Enum.map(0..(pixels.width - 1), fn x ->
         Enum.map(0..(pixels.height - 1), fn y ->
-          %Pixel{color: %Color{hex: hex}} = Pixel.get_pixel(pixels, x, y)
-          hex
+          %Pixel{color: %Color{rgb: {r, g, b, _}}} = Pixel.get_pixel(pixels, x, y)
+          {r, g, b}
         end)
       end)
 
@@ -24,8 +26,8 @@ defmodule ExColor do
     |> Enum.reduce(%{}, fn x, acc -> Map.update(acc, x, 1, &(&1 + 1)) end)
     |> Map.to_list()
     |> Enum.sort(fn {_k1, value_1}, {_k2, value_2} -> value_1 >= value_2 end)
-    |> Enum.take(quantity)
     |> Enum.map(fn {color, _count} -> color end)
+    |> Enum.take(quantity)
   end
 
   #
