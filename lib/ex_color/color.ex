@@ -6,7 +6,7 @@ defmodule ExColor.Color do
   @spec get_color(binary()) :: any()
   def get_color(<<r, g, b, a>> = color) do
     %Color{
-      rgb: [r, g, b, a],
+      rgb: {r, g, b, a},
       hex: to_hex(color)
     }
   end
@@ -14,7 +14,7 @@ defmodule ExColor.Color do
   @spec get_color(binary()) :: any()
   def get_color(<<r, g, b>> = color) do
     %Color{
-      rgb: [r, g, b],
+      rgb: {r, g, b},
       hex: to_hex(color)
     }
   end
